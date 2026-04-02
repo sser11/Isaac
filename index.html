@@ -12,16 +12,23 @@
     <div class="dashboard-container">
         <header class="dashboard-header">
             <h1>⚔️ The Binding of Isaac <span>Трансформации Дашборд</span></h1>
-            <p>Изучай трансформации, получай рецепты и следи за новостями игры</p>
+            <p>Изучай трансформации, получай рецепты и знакомься с персонажами</p>
         </header>
 
         <div class="widget-controls">
             <button id="addTransformationsBtn" class="btn btn-primary">➕ Добавить виджет трансформаций</button>
-            <button id="addNewsBtn" class="btn btn-secondary">📰 Добавить виджет новостей</button>
-            <button id="addRandomItemBtn" class="btn btn-secondary">🎲 Добавить случайный предмет</button>
+            <button id="addCharactersBtn" class="btn btn-secondary">👥 Добавить виджет персонажей</button>
         </div>
 
         <div id="widgetsGrid" class="widgets-grid"></div>
+    </div>
+
+    <!-- Модальное окно для характеристик персонажа -->
+    <div id="characterModal" class="modal">
+        <div class="modal-content">
+            <span class="modal-close">&times;</span>
+            <div id="modalBody"></div>
+        </div>
     </div>
 
     <script type="module" src="main.js"></script>
