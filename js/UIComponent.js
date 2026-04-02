@@ -1,13 +1,8 @@
 export class UIComponent {
     constructor(config) {
-        if (this.constructor === UIComponent) {
-            throw new Error('UIComponent is an abstract class');
-        }
         this.id = config.id || `widget_${Date.now()}_${Math.random()}`;
         this.title = config.title || 'Виджет';
         this.element = null;
-        this.listeners = [];
-        this.closeHandler = null;
     }
 
     render() {
@@ -15,27 +10,10 @@ export class UIComponent {
     }
 
     destroy() {
-        // Удаляем все зарегистрированные слушатели
-        this.listeners.forEach(({ element, event, handler }) => {
-            if (element && element.removeEventListener) {
-                element.removeEventListener(event, handler);
-            }
-        });
-        
-        // Удаляем элемент из DOM
         if (this.element && this.element.parentNode) {
             this.element.remove();
         }
-        
         this.element = null;
-        this.listeners = [];
-    }
-
-    addListener(element, event, handler) {
-        if (element && element.addEventListener) {
-            element.addEventListener(event, handler);
-            this.listeners.push({ element, event, handler });
-        }
     }
 
     createWidgetContainer(contentElement) {
@@ -45,12 +23,21 @@ export class UIComponent {
 
         const header = document.createElement('div');
         header.className = 'widget-header';
-        header.innerHTML = `
-            <h3>${this.title}</h3>
-            <div class="widget-actions">
-                <button class="close-widget-btn" data-widget-id="${this.id}">✕</button>
-            </div>
-        `;
+        
+        const title = document.createElement('h3');
+        title.textContent = this.title;
+        
+        const actions = document.createElement('div');
+        actions.className = 'widget-actions';
+        
+        const closeBtn = document.createElement('button');
+        closeBtn.className = 'close-widget-btn';
+        closeBtn.textContent = '✕';
+        closeBtn.setAttribute('data-widget-id', this.id);
+        
+        actions.appendChild(closeBtn);
+        header.appendChild(title);
+        header.appendChild(actions);
 
         const content = document.createElement('div');
         content.className = 'widget-content';
@@ -61,22 +48,6 @@ export class UIComponent {
 
         this.element = widget;
         
-        // Добавляем слушатель для кнопки закрытия
-        const closeBtn = header.querySelector('.close-widget-btn');
-        if (closeBtn) {
-            this.closeHandler = (e) => {
-                e.stopPropagation();
-                if (this.onClose) {
-                    this.onClose(this.id);
-                }
-            };
-            this.addListener(closeBtn, 'click', this.closeHandler);
-        }
-
         return widget;
-    }
-    
-    setOnCloseHandler(handler) {
-        this.onClose = handler;
     }
 }
