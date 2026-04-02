@@ -82,17 +82,6 @@ body {
     background: linear-gradient(135deg, #5a5a7a, #3c3c4e);
 }
 
-.btn-danger {
-    background: linear-gradient(135deg, #c0392b, #e74c3c);
-    color: white;
-    padding: 6px 12px;
-    font-size: 12px;
-}
-
-.btn-danger:hover {
-    transform: translateY(-1px);
-}
-
 .widgets-grid {
     display: grid;
     grid-template-columns: repeat(auto-fill, minmax(450px, 1fr));
