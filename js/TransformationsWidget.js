@@ -5,9 +5,9 @@ const TRANSFORMATIONS_DATA = {
         name: '🐱 Кот Гаппи',
         icon: '🐱',
         items: [
-            { name: 'Коготь Гаппи', img: 'https://static.wikia.nocookie.net/bindingofisaac/images/e/ef/Guppy%27s_Paw.png/revision/latest?cb=20150913173429' },
-            { name: 'Голова Гаппи', img: 'https://static.wikia.nocookie.net/bindingofisaac/images/e/e9/Guppy%27s_Head.png/revision/latest?cb=20150913173318' },
-            { name: 'Хвост Гаппи', img: 'https://static.wikia.nocookie.net/bindingofisaac/images/2/2c/Guppy%27s_Tail.png/revision/latest?cb=20150913173451' }
+            { name: 'Коготь Гаппи', emoji: '🐾' },
+            { name: 'Голова Гаппи', emoji: '🐱' },
+            { name: 'Хвост Гаппи', emoji: '🐈' }
         ],
         effect: 'Мухи при атаке, полёт, дополнительная жизнь'
     },
@@ -15,9 +15,9 @@ const TRANSFORMATIONS_DATA = {
         name: '😈 Левиафан',
         icon: '😈',
         items: [
-            { name: 'Сатанинская Библия', img: 'https://static.wikia.nocookie.net/bindingofisaac/images/5/5a/Satanic_Bible.png/revision/latest?cb=20150913173947' },
-            { name: 'Церемониальное Одеяние', img: 'https://static.wikia.nocookie.net/bindingofisaac/images/d/d6/Ceremonial_Robe.png/revision/latest?cb=20150913172619' },
-            { name: 'Козлиная Голова', img: 'https://static.wikia.nocookie.net/bindingofisaac/images/f/fe/Goat_Head.png/revision/latest?cb=20150913173217' }
+            { name: 'Сатанинская Библия', emoji: '📖' },
+            { name: 'Церемониальное Одеяние', emoji: '👘' },
+            { name: 'Козлиная Голова', emoji: '🐐' }
         ],
         effect: 'Увеличенный урон, скорость, +1 сердечко'
     },
@@ -25,9 +25,9 @@ const TRANSFORMATIONS_DATA = {
         name: '👼 Серафим',
         icon: '👼',
         items: [
-            { name: 'Ангельские Крылья', img: 'https://static.wikia.nocookie.net/bindingofisaac/images/6/6d/Angel_Wings.png/revision/latest?cb=20150913172119' },
-            { name: 'Святой Грааль', img: 'https://static.wikia.nocookie.net/bindingofisaac/images/f/f9/Holy_Grail.png/revision/latest?cb=20150913173343' },
-            { name: 'Нимб', img: 'https://static.wikia.nocookie.net/bindingofisaac/images/7/71/Halo.png/revision/latest?cb=20150913173258' }
+            { name: 'Ангельские Крылья', emoji: '🪽' },
+            { name: 'Святой Грааль', emoji: '🏆' },
+            { name: 'Нимб', emoji: '💫' }
         ],
         effect: 'Полёт, сердечки душ, +1 сердечко души'
     },
@@ -35,9 +35,9 @@ const TRANSFORMATIONS_DATA = {
         name: '🪰 Вельзевул',
         icon: '🪰',
         items: [
-            { name: 'Голова Сверчка', img: 'https://static.wikia.nocookie.net/bindingofisaac/images/3/33/Cricket%27s_Head.png/revision/latest?cb=20150913172729' },
-            { name: 'Череп', img: 'https://static.wikia.nocookie.net/bindingofisaac/images/5/5d/Skull.png/revision/latest?cb=20150913174014' },
-            { name: 'Гнилая Голова Боба', img: 'https://static.wikia.nocookie.net/bindingofisaac/images/6/6f/Bob%27s_Rotten_Head.png/revision/latest?cb=20150913172315' }
+            { name: 'Голова Сверчка', emoji: '🦗' },
+            { name: 'Череп', emoji: '💀' },
+            { name: 'Гнилая Голова Боба', emoji: '🧟' }
         ],
         effect: 'Синие мухи, иммунитет к спайкам'
     },
@@ -45,11 +45,21 @@ const TRANSFORMATIONS_DATA = {
         name: '📚 Книжный Червь',
         icon: '📚',
         items: [
-            { name: 'Библия', img: 'https://static.wikia.nocookie.net/bindingofisaac/images/1/1a/The_Bible.png/revision/latest?cb=20150913174128' },
-            { name: 'Книга Теней', img: 'https://static.wikia.nocookie.net/bindingofisaac/images/f/f2/Book_of_Shadows.png/revision/latest?cb=20150913172400' },
-            { name: 'Книга Велиала', img: 'https://static.wikia.nocookie.net/bindingofisaac/images/2/2d/The_Book_of_Belial.png/revision/latest?cb=20150913174107' }
+            { name: 'Библия', emoji: '📕' },
+            { name: 'Книга Теней', emoji: '📘' },
+            { name: 'Книга Велиала', emoji: '📖' }
         ],
         effect: 'Дополнительный заряд активных предметов'
+    },
+    'spider_baby': {
+        name: '🕷️ Паучий Ребёнок',
+        icon: '🕷️',
+        items: [
+            { name: 'Паук', emoji: '🕷️' },
+            { name: 'Паутина', emoji: '🕸️' },
+            { name: 'Мешок Пауков', emoji: '🎒' }
+        ],
+        effect: 'Пауки-союзники при получении урона'
     }
 };
 
@@ -89,8 +99,7 @@ export class TransformationsWidget extends UIComponent {
         
         const itemsHtml = trans.items.map(item => `
             <div class="recipe-item">
-                <img class="recipe-item-img" src="${item.img}" alt="${item.name}" 
-                     onerror="this.src='https://via.placeholder.com/80x80?text=Item'">
+                <div class="recipe-item-emoji">${item.emoji}</div>
                 <div class="recipe-item-name">${item.name}</div>
             </div>
         `).join('');
