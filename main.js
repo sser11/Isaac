@@ -15,7 +15,8 @@ document.addEventListener('DOMContentLoaded', () => {
         dashboard.addWidget('randomItem');
     });
 
-    dashboard.addWidget('transformations', { title: '🔮 Трансформации Исаака' });
-    dashboard.addWidget('news', { title: '📰 Последние новости' });
-    dashboard.addWidget('randomItem', { title: '🎲 Рандомный предмет' });
+    // Создаём стартовые виджеты
+    dashboard.addWidget('transformations', { title: 'Трансформации Исаака' });
+    dashboard.addWidget('news', { title: 'Последние новости' });
+    dashboard.addWidget('randomItem', { title: 'Случайный предмет' });
 });
