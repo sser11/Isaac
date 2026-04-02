@@ -1,70 +1,62 @@
 import { UIComponent } from './UIComponent.js';
 
-// База данных предметов с реальными изображениями из игры
-const ITEMS_IMAGES = {
-    'Коготь Гаппи': 'https://static.wikia.nocookie.net/bindingofisaac/images/e/ef/Guppy%27s_Paw.png',
-    'Голова Гаппи': 'https://static.wikia.nocookie.net/bindingofisaac/images/e/e9/Guppy%27s_Head.png',
-    'Хвост Гаппи': 'https://static.wikia.nocookie.net/bindingofisaac/images/2/2c/Guppy%27s_Tail.png',
-    'Сатанинская Библия': 'https://static.wikia.nocookie.net/bindingofisaac/images/5/5a/Satanic_Bible.png',
-    'Копыта': 'https://static.wikia.nocookie.net/bindingofisaac/images/d/d6/Ceremonial_Robe.png',
-    'Рога': 'https://static.wikia.nocookie.net/bindingofisaac/images/f/fe/Goat_Head.png',
-    'Крылья': 'https://static.wikia.nocookie.net/bindingofisaac/images/6/6d/Angel_Wings.png',
-    'Святой Грааль': 'https://static.wikia.nocookie.net/bindingofisaac/images/f/f9/Holy_Grail.png',
-    'Нимб': 'https://static.wikia.nocookie.net/bindingofisaac/images/7/71/Halo.png',
-    'Мушиная корона': 'https://static.wikia.nocookie.net/bindingofisaac/images/3/33/Cricket%27s_Head.png',
-    'Муха': 'https://static.wikia.nocookie.net/bindingofisaac/images/5/5d/Skull.png',
-    'Сморкач': 'https://static.wikia.nocookie.net/bindingofisaac/images/6/6f/Bob%27s_Rotten_Head.png',
-    'Библия': 'https://static.wikia.nocookie.net/bindingofisaac/images/1/1a/The_Bible.png',
-    'Книга теней': 'https://static.wikia.nocookie.net/bindingofisaac/images/f/f2/Book_of_Shadows.png',
-    'Книга Бел': 'https://static.wikia.nocookie.net/bindingofisaac/images/2/2d/The_Book_of_Belial.png',
-    'Паук': 'https://static.wikia.nocookie.net/bindingofisaac/images/6/67/Spiders.png',
-    'Паутина': 'https://static.wikia.nocookie.net/bindingofisaac/images/3/3e/Web.png',
-    'Мешок пауков': 'https://static.wikia.nocookie.net/bindingofisaac/images/c/c4/Sack_of_Spiders.png'
-};
-
 const TRANSFORMATIONS_DATA = {
     'guppy': {
-        name: '🐱 Кот Гаппи',
+        name: 'Кот Гаппи',
         icon: '🐱',
-        items: ['Коготь Гаппи', 'Голова Гаппи', 'Хвост Гаппи'],
-        effect: 'Мухи при атаке, полёт, +1 жизнь'
+        items: [
+            { name: 'Коготь Гаппи', img: 'https://bindingofisaac.fandom.com/wiki/Guppy%27s_Paw?file=Guppy%27s_Paw.png' },
+            { name: 'Голова Гаппи', img: 'https://bindingofisaac.fandom.com/wiki/Guppy%27s_Head?file=Guppy%27s_Head.png' },
+            { name: 'Хвост Гаппи', img: 'https://bindingofisaac.fandom.com/wiki/Guppy%27s_Tail?file=Guppy%27s_Tail.png' }
+        ],
+        effect: 'Мухи при атаке, полёт, дополнительная жизнь'
     },
     'leviathan': {
-        name: '😈 Левиафан',
+        name: 'Левиафан',
         icon: '😈',
-        items: ['Сатанинская Библия', 'Копыта', 'Рога'],
-        effect: '+1 сердце, увеличенный урон, скорость'
+        items: [
+            { name: 'Сатанинская Библия', img: 'https://bindingofisaac.fandom.com/wiki/Satanic_Bible?file=Satanic_Bible.png' },
+            { name: 'Церемониальное Одеяние', img: 'https://bindingofisaac.fandom.com/wiki/Ceremonial_Robe?file=Ceremonial_Robe.png' },
+            { name: 'Козлиная Голова', img: 'https://bindingofisaac.fandom.com/wiki/Goat_Head?file=Goat_Head.png' }
+        ],
+        effect: 'Увеличенный урон, скорость, +1 сердечко'
     },
     'seraphim': {
-        name: '👼 Серафим',
+        name: 'Серафим',
         icon: '👼',
-        items: ['Крылья', 'Святой Грааль', 'Нимб'],
+        items: [
+            { name: 'Ангельские Крылья', img: 'https://bindingofisaac.fandom.com/wiki/Angel_Wings?file=Angel_Wings.png' },
+            { name: 'Святой Грааль', img: 'https://bindingofisaac.fandom.com/wiki/Holy_Grail?file=Holy_Grail.png' },
+            { name: 'Нимб', img: 'https://bindingofisaac.fandom.com/wiki/Halo?file=Halo.png' }
+        ],
         effect: 'Полёт, сердечки душ, +1 сердечко души'
     },
     'beelzebub': {
-        name: '🪰 Вельзевул',
+        name: 'Вельзевул',
         icon: '🪰',
-        items: ['Мушиная корона', 'Муха', 'Сморкач'],
+        items: [
+            { name: 'Голова Сверчка', img: 'https://bindingofisaac.fandom.com/wiki/Cricket%27s_Head?file=Cricket%27s_Head.png' },
+            { name: 'Череп', img: 'https://bindingofisaac.fandom.com/wiki/Skull?file=Skull.png' },
+            { name: 'Гнилая Голова Боба', img: 'https://bindingofisaac.fandom.com/wiki/Bob%27s_Rotten_Head?file=Bob%27s_Rotten_Head.png' }
+        ],
         effect: 'Синие мухи, иммунитет к спайкам'
     },
     'bookworm': {
-        name: '📚 Книжный червь',
+        name: 'Книжный Червь',
         icon: '📚',
-        items: ['Библия', 'Книга теней', 'Книга Бел'],
+        items: [
+            { name: 'Библия', img: 'https://bindingofisaac.fandom.com/wiki/The_Bible?file=The_Bible.png' },
+            { name: 'Книга Теней', img: 'https://bindingofisaac.fandom.com/wiki/Book_of_Shadows?file=Book_of_Shadows.png' },
+            { name: 'Книга Велиала', img: 'https://bindingofisaac.fandom.com/wiki/The_Book_of_Belial?file=The_Book_of_Belial.png' }
+        ],
         effect: 'Дополнительный заряд активных предметов'
-    },
-    'spider_baby': {
-        name: '🕷️ Паучий ребенок',
-        icon: '🕷️',
-        items: ['Паук', 'Паутина', 'Мешок пауков'],
-        effect: 'Пауки-союзники при получении урона'
     }
 };
 
 export class TransformationsWidget extends UIComponent {
     constructor(config) {
         super(config);
-        this.title = config.title || '🔮 Трансформации';
+        this.title = config.title || 'Трансформации';
         this.expandedId = null;
     }
 
@@ -95,28 +87,23 @@ export class TransformationsWidget extends UIComponent {
         const recipeDiv = document.createElement('div');
         recipeDiv.className = 'transformation-recipe';
         recipeDiv.style.display = 'none';
-        recipeDiv.innerHTML = `
-            <div class="recipe-title">📜 Рецепт трансформации:</div>
-            <div class="items-list" id="items-${key}"></div>
-            <div class="recipe-title">✨ Эффект: ${trans.effect}</div>
-        `;
+        recipeDiv.innerHTML = `<div class="recipe-title">📜 Рецепт:</div><div class="items-list" id="items-${key}"></div><div class="recipe-title">✨ Эффект: ${trans.effect}</div>`;
 
         wrapper.appendChild(summary);
         wrapper.appendChild(recipeDiv);
 
         const itemsContainer = recipeDiv.querySelector(`#items-${key}`);
-        trans.items.forEach(itemName => {
+        trans.items.forEach(item => {
             const itemDiv = document.createElement('div');
             itemDiv.className = 'recipe-item';
-            const imgUrl = ITEMS_IMAGES[itemName] || 'https://static.wikia.nocookie.net/bindingofisaac/images/9/97/Question_Mark.png';
             itemDiv.innerHTML = `
-                <img class="recipe-item-img" src="${imgUrl}" alt="${itemName}" onerror="this.src='https://static.wikia.nocookie.net/bindingofisaac/images/9/97/Question_Mark.png'">
-                <div class="recipe-item-name">${itemName}</div>
+                <img class="recipe-item-img" src="${item.img}" alt="${item.name}" onerror="this.src='https://via.placeholder.com/60x60?text=?'">
+                <div class="recipe-item-name">${item.name}</div>
             `;
             itemsContainer.appendChild(itemDiv);
         });
 
-        this.addListener(summary, 'click', () => {
+        summary.addEventListener('click', () => {
             const isExpanded = recipeDiv.style.display === 'block';
             recipeDiv.style.display = isExpanded ? 'none' : 'block';
             summary.querySelector('.transformation-arrow').textContent = isExpanded ? '▼' : '▲';
