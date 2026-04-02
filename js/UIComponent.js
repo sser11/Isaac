@@ -7,6 +7,7 @@ export class UIComponent {
         this.title = config.title || 'Виджет';
         this.element = null;
         this.listeners = [];
+        this.closeHandler = null;
     }
 
     render() {
@@ -14,32 +15,40 @@ export class UIComponent {
     }
 
     destroy() {
-        if (this.element && this.element.parentNode) {
-            this.listeners.forEach(({ element, event, handler }) => {
+        // Удаляем все зарегистрированные слушатели
+        this.listeners.forEach(({ element, event, handler }) => {
+            if (element && element.removeEventListener) {
                 element.removeEventListener(event, handler);
-            });
+            }
+        });
+        
+        // Удаляем элемент из DOM
+        if (this.element && this.element.parentNode) {
             this.element.remove();
         }
+        
         this.element = null;
         this.listeners = [];
     }
 
     addListener(element, event, handler) {
-        element.addEventListener(event, handler);
-        this.listeners.push({ element, event, handler });
+        if (element && element.addEventListener) {
+            element.addEventListener(event, handler);
+            this.listeners.push({ element, event, handler });
+        }
     }
 
     createWidgetContainer(contentElement) {
         const widget = document.createElement('div');
         widget.className = 'widget';
-        widget.dataset.id = this.id;
+        widget.setAttribute('data-id', this.id);
 
         const header = document.createElement('div');
         header.className = 'widget-header';
         header.innerHTML = `
             <h3>${this.title}</h3>
             <div class="widget-actions">
-                <button class="btn-danger close-widget" data-id="${this.id}">✕</button>
+                <button class="close-widget-btn" data-widget-id="${this.id}">✕</button>
             </div>
         `;
 
@@ -50,6 +59,24 @@ export class UIComponent {
         widget.appendChild(header);
         widget.appendChild(content);
 
+        this.element = widget;
+        
+        // Добавляем слушатель для кнопки закрытия
+        const closeBtn = header.querySelector('.close-widget-btn');
+        if (closeBtn) {
+            this.closeHandler = (e) => {
+                e.stopPropagation();
+                if (this.onClose) {
+                    this.onClose(this.id);
+                }
+            };
+            this.addListener(closeBtn, 'click', this.closeHandler);
+        }
+
         return widget;
+    }
+    
+    setOnCloseHandler(handler) {
+        this.onClose = handler;
     }
 }
