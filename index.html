@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>The Binding of Isaac - Dashboard</title>
+    <link rel="stylesheet" href="styles/main.css">
+    <link rel="stylesheet" href="styles/components.css">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+</head>
+<body>
+    <div class="dashboard-container">
+        <header class="dashboard-header">
+            <h1>⚔️ The Binding of Isaac <span>Трансформации Дашборд</span></h1>
+            <p>Изучай трансформации, получай рецепты и следи за новостями игры</p>
+        </header>
+
+        <div class="widget-controls">
+            <button id="addTransformationsBtn" class="btn btn-primary">➕ Добавить виджет трансформаций</button>
+            <button id="addNewsBtn" class="btn btn-secondary">📰 Добавить виджет новостей</button>
+            <button id="addRandomItemBtn" class="btn btn-secondary">🎲 Добавить случайный предмет</button>
+        </div>
+
+        <div id="widgetsGrid" class="widgets-grid"></div>
+    </div>
+
+    <script type="module" src="main.js"></script>
+</body>
+</html>
