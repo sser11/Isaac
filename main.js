@@ -1,22 +1,35 @@
 import { Dashboard } from './js/Dashboard.js';
 
+// Ждём полной загрузки DOM
 document.addEventListener('DOMContentLoaded', () => {
+    // Создаём дашборд
     const dashboard = new Dashboard('widgetsGrid');
 
-    document.getElementById('addTransformationsBtn').addEventListener('click', () => {
-        dashboard.addWidget('transformations');
-    });
+    // Добавляем обработчики для кнопок
+    const addTransformationsBtn = document.getElementById('addTransformationsBtn');
+    const addNewsBtn = document.getElementById('addNewsBtn');
+    const addRandomItemBtn = document.getElementById('addRandomItemBtn');
 
-    document.getElementById('addNewsBtn').addEventListener('click', () => {
-        dashboard.addWidget('news');
-    });
+    if (addTransformationsBtn) {
+        addTransformationsBtn.addEventListener('click', () => {
+            dashboard.addWidget('transformations', { title: '🔮 Трансформации Исаака' });
+        });
+    }
 
-    document.getElementById('addRandomItemBtn').addEventListener('click', () => {
-        dashboard.addWidget('randomItem');
-    });
+    if (addNewsBtn) {
+        addNewsBtn.addEventListener('click', () => {
+            dashboard.addWidget('news', { title: '📰 Последние новости' });
+        });
+    }
+
+    if (addRandomItemBtn) {
+        addRandomItemBtn.addEventListener('click', () => {
+            dashboard.addWidget('randomItem', { title: '🎲 Рандомный предмет' });
+        });
+    }
 
     // Создаём стартовые виджеты
-    dashboard.addWidget('transformations', { title: 'Трансформации Исаака' });
-    dashboard.addWidget('news', { title: 'Последние новости' });
-    dashboard.addWidget('randomItem', { title: 'Случайный предмет' });
+    dashboard.addWidget('transformations', { title: '🔮 Трансформации Исаака' });
+    dashboard.addWidget('news', { title: '📰 Последние новости' });
+    dashboard.addWidget('randomItem', { title: '🎲 Рандомный предмет' });
 });
