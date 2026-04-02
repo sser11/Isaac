@@ -6,22 +6,20 @@ export class Dashboard {
     constructor(containerId) {
         this.container = document.getElementById(containerId);
         this.widgets = [];
-        this.nextId = 1;
     }
 
     addWidget(widgetType, config = {}) {
         let widget;
-        const widgetId = this.nextId++;
         
         switch(widgetType) {
             case 'transformations':
-                widget = new TransformationsWidget({ ...config, id: widgetId });
+                widget = new TransformationsWidget(config);
                 break;
             case 'news':
-                widget = new NewsWidget({ ...config, id: widgetId });
+                widget = new NewsWidget(config);
                 break;
             case 'randomItem':
-                widget = new RandomItemWidget({ ...config, id: widgetId });
+                widget = new RandomItemWidget(config);
                 break;
             default:
                 console.error('Unknown widget type:', widgetType);
@@ -33,7 +31,9 @@ export class Dashboard {
         // Находим кнопку закрытия и добавляем обработчик
         const closeBtn = widgetElement.querySelector('.close-widget-btn');
         if (closeBtn) {
-            closeBtn.addEventListener('click', () => {
+            closeBtn.addEventListener('click', (e) => {
+                e.preventDefault();
+                e.stopPropagation();
                 this.removeWidget(widget);
             });
         }
