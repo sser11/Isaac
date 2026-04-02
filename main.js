@@ -1,14 +1,10 @@
 import { Dashboard } from './js/Dashboard.js';
 
-// Ждём полной загрузки DOM
 document.addEventListener('DOMContentLoaded', () => {
-    // Создаём дашборд
     const dashboard = new Dashboard('widgetsGrid');
 
-    // Добавляем обработчики для кнопок
     const addTransformationsBtn = document.getElementById('addTransformationsBtn');
-    const addNewsBtn = document.getElementById('addNewsBtn');
-    const addRandomItemBtn = document.getElementById('addRandomItemBtn');
+    const addCharactersBtn = document.getElementById('addCharactersBtn');
 
     if (addTransformationsBtn) {
         addTransformationsBtn.addEventListener('click', () => {
@@ -16,20 +12,13 @@ document.addEventListener('DOMContentLoaded', () => {
         });
     }
 
-    if (addNewsBtn) {
-        addNewsBtn.addEventListener('click', () => {
-            dashboard.addWidget('news', { title: '📰 Последние новости' });
-        });
-    }
-
-    if (addRandomItemBtn) {
-        addRandomItemBtn.addEventListener('click', () => {
-            dashboard.addWidget('randomItem', { title: '🎲 Рандомный предмет' });
+    if (addCharactersBtn) {
+        addCharactersBtn.addEventListener('click', () => {
+            dashboard.addWidget('characters', { title: '👥 Персонажи The Binding of Isaac' });
         });
     }
 
     // Создаём стартовые виджеты
     dashboard.addWidget('transformations', { title: '🔮 Трансформации Исаака' });
-    dashboard.addWidget('news', { title: '📰 Последние новости' });
-    dashboard.addWidget('randomItem', { title: '🎲 Рандомный предмет' });
+    dashboard.addWidget('characters', { title: '👥 Персонажи The Binding of Isaac' });
 });
