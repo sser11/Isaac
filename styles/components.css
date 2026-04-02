@@ -1,130 +1,4 @@
-.widget {
-    background: rgba(30, 30, 50, 0.95);
-    backdrop-filter: blur(10px);
-    border-radius: 20px;
-    overflow: hidden;
-    transition: all 0.3s ease;
-    border: 1px solid rgba(255, 255, 255, 0.1);
-    animation: fadeIn 0.3s ease;
-}
-
-@keyframes fadeIn {
-    from {
-        opacity: 0;
-        transform: translateY(20px);
-    }
-    to {
-        opacity: 1;
-        transform: translateY(0);
-    }
-}
-
-.widget-header {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    padding: 15px 20px;
-    background: rgba(0, 0, 0, 0.4);
-    border-bottom: 1px solid rgba(255, 255, 255, 0.1);
-}
-
-.widget-header h3 {
-    font-size: 1.2rem;
-}
-
-.widget-actions {
-    display: flex;
-    gap: 8px;
-}
-
-.widget-content {
-    padding: 20px;
-    max-height: 500px;
-    overflow-y: auto;
-}
-
-/* Transformations Widget */
-.transformations-list {
-    display: flex;
-    flex-direction: column;
-    gap: 12px;
-}
-
-.transformation-item {
-    background: rgba(0, 0, 0, 0.3);
-    border-radius: 12px;
-    overflow: hidden;
-    cursor: pointer;
-    transition: all 0.2s;
-}
-
-.transformation-item:hover {
-    background: rgba(255, 255, 255, 0.1);
-    transform: translateX(5px);
-}
-
-.transformation-summary {
-    display: flex;
-    align-items: center;
-    gap: 15px;
-    padding: 12px 15px;
-}
-
-.transformation-icon {
-    width: 48px;
-    height: 48px;
-    background: rgba(0, 0, 0, 0.5);
-    border-radius: 12px;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    font-size: 28px;
-}
-
-.transformation-name {
-    font-weight: 600;
-    font-size: 1.1rem;
-    flex: 1;
-}
-
-.transformation-recipe {
-    padding: 0 15px 15px 15px;
-    border-top: 1px solid rgba(255, 255, 255, 0.1);
-    margin-top: 5px;
-    animation: slideDown 0.3s ease;
-}
-
-@keyframes slideDown {
-    from {
-        opacity: 0;
-        transform: translateY(-10px);
-    }
-    to {
-        opacity: 1;
-        transform: translateY(0);
-    }
-}
-
-.recipe-title {
-    font-size: 0.8rem;
-    color: #ffaa66;
-    margin: 10px 0 8px 0;
-}
-
-.items-list {
-    display: flex;
-    flex-wrap: wrap;
-    gap: 12px;
-}
-
-.recipe-item {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    gap: 5px;
-    text-align: center;
-    width: 70px;
-}
+/* Добавьте в конец файла components.css */
 
 .recipe-item-img {
     width: 50px;
@@ -134,87 +8,59 @@
     display: flex;
     align-items: center;
     justify-content: center;
-    font-size: 28px;
+    object-fit: contain;
+    padding: 5px;
 }
 
-.recipe-item-name {
-    font-size: 0.7rem;
-    color: #ccc;
-}
-
-/* News Widget */
-.news-list {
-    display: flex;
-    flex-direction: column;
-    gap: 15px;
-}
-
-.news-item {
-    background: rgba(0, 0, 0, 0.3);
-    border-radius: 12px;
-    padding: 15px;
-}
-
-.news-title {
-    font-weight: 600;
-    margin-bottom: 8px;
-    color: #ffaa66;
-}
-
-.news-date {
-    font-size: 0.7rem;
-    color: #888;
-    margin-top: 8px;
-}
-
-.loading {
-    text-align: center;
-    padding: 40px;
-    color: #888;
-}
-
-/* Random Item Widget */
-.item-card {
-    text-align: center;
-    padding: 20px;
+.item-image {
+    width: 80px;
+    height: 80px;
+    object-fit: contain;
+    filter: drop-shadow(0 0 10px rgba(0,0,0,0.5));
 }
 
 .item-icon {
-    font-size: 64px;
+    display: flex;
+    justify-content: center;
     margin-bottom: 15px;
 }
 
-.item-name {
-    font-size: 1.4rem;
-    font-weight: 700;
-    margin-bottom: 10px;
-    color: #ffaa66;
-}
-
-.item-description {
-    color: #bbb;
-    font-size: 0.9rem;
-    line-height: 1.5;
-}
-
-.refresh-btn {
-    margin-top: 20px;
-    width: 100%;
-    padding: 10px;
-    background: rgba(255, 255, 255, 0.1);
-    border: 1px solid rgba(255, 255, 255, 0.2);
-    border-radius: 10px;
+.close-widget-btn {
+    background: linear-gradient(135deg, #c0392b, #e74c3c);
     color: white;
+    border: none;
+    border-radius: 8px;
+    padding: 6px 12px;
+    font-size: 16px;
     cursor: pointer;
     transition: all 0.2s;
+    width: 32px;
+    height: 32px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
 }
 
-.refresh-btn:hover {
-    background: rgba(255, 255, 255, 0.2);
+.close-widget-btn:hover {
+    transform: scale(1.05);
+    background: linear-gradient(135deg, #e74c3c, #c0392b);
 }
 
-.error {
-    color: #ff6b6b;
-    text-align: center;
-    padding: 20px;
+.widget-actions {
+    display: flex;
+    gap: 8px;
+}
+
+.btn-danger {
+    background: linear-gradient(135deg, #c0392b, #e74c3c);
+    color: white;
+    padding: 6px 12px;
+    font-size: 12px;
+    border: none;
+    border-radius: 8px;
+    cursor: pointer;
+}
+
+.btn-danger:hover {
+    transform: translateY(-1px);
 }
