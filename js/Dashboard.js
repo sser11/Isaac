@@ -1,6 +1,5 @@
 import { TransformationsWidget } from './TransformationsWidget.js';
-import { NewsWidget } from './NewsWidget.js';
-import { RandomItemWidget } from './RandomItemWidget.js';
+import { CharactersWidget } from './CharactersWidget.js';
 
 export class Dashboard {
     constructor(containerId) {
@@ -15,11 +14,8 @@ export class Dashboard {
             case 'transformations':
                 widget = new TransformationsWidget(config);
                 break;
-            case 'news':
-                widget = new NewsWidget(config);
-                break;
-            case 'randomItem':
-                widget = new RandomItemWidget(config);
+            case 'characters':
+                widget = new CharactersWidget(config);
                 break;
             default:
                 console.error('Unknown widget type:', widgetType);
@@ -28,7 +24,6 @@ export class Dashboard {
 
         const widgetElement = widget.render();
         
-        // Находим кнопку закрытия и добавляем обработчик
         const closeBtn = widgetElement.querySelector('.close-widget-btn');
         if (closeBtn) {
             closeBtn.addEventListener('click', (e) => {
