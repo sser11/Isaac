@@ -198,26 +198,15 @@
     transform: translateY(-5px);
 }
 
-.character-emoji {
-    font-size: 64px;
-    margin-bottom: 10px;
-    filter: drop-shadow(0 0 5px rgba(0,0,0,0.5));
-}
-
 .character-name {
     font-weight: 600;
-    font-size: 0.9rem;
+    font-size: 1rem;
     color: #ffaa66;
 }
 
 /* Modal Character Stats */
 .character-stats {
     text-align: center;
-}
-
-.character-stats-emoji {
-    font-size: 80px;
-    margin-bottom: 15px;
 }
 
 .character-stats-name {
