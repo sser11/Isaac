@@ -1,6 +1,5 @@
 import { UIComponent } from './UIComponent.js';
 
-// Используем надежные URL с картинками из официальной вики
 const TRANSFORMATIONS_DATA = {
     'guppy': {
         name: '🐱 Кот Гаппи',
@@ -90,7 +89,8 @@ export class TransformationsWidget extends UIComponent {
         
         const itemsHtml = trans.items.map(item => `
             <div class="recipe-item">
-                <img class="recipe-item-img" src="${item.img}" alt="${item.name}" onerror="this.src='https://via.placeholder.com/60x60?text=?'">
+                <img class="recipe-item-img" src="${item.img}" alt="${item.name}" 
+                     onerror="this.src='https://via.placeholder.com/80x80?text=Item'">
                 <div class="recipe-item-name">${item.name}</div>
             </div>
         `).join('');
@@ -110,7 +110,6 @@ export class TransformationsWidget extends UIComponent {
             recipeDiv.style.display = isExpanded ? 'none' : 'block';
             const arrow = summary.querySelector('.transformation-arrow');
             arrow.textContent = isExpanded ? '▼' : '▲';
-            arrow.style.transform = isExpanded ? 'rotate(0deg)' : 'rotate(180deg)';
         });
 
         return wrapper;
