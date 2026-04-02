@@ -3,7 +3,7 @@ import { UIComponent } from './UIComponent.js';
 const CHARACTERS_DATA = [
     {
         name: 'Исаак',
-        emoji: '👶',
+        emoji: '',
         health: '3 сердечка ❤️❤️❤️',
         damage: '3.50 ⚔️',
         speed: '1.00 💨',
@@ -13,7 +13,7 @@ const CHARACTERS_DATA = [
     },
     {
         name: 'Магдалина',
-        emoji: '👧',
+        emoji: '',
         health: '4 сердечка ❤️❤️❤️❤️',
         damage: '3.50 ⚔️',
         speed: '0.85 💨',
@@ -23,7 +23,7 @@ const CHARACTERS_DATA = [
     },
     {
         name: 'Каин',
-        emoji: '👨‍🦯',
+        emoji: '',
         health: '2 сердечка ❤️❤️',
         damage: '3.50 ⚔️',
         speed: '1.20 💨',
@@ -33,7 +33,7 @@ const CHARACTERS_DATA = [
     },
     {
         name: 'Иуда',
-        emoji: '🗡️',
+        emoji: '',
         health: '1 сердечко ❤️',
         damage: '4.50 ⚔️',
         speed: '1.00 💨',
@@ -43,7 +43,7 @@ const CHARACTERS_DATA = [
     },
     {
         name: 'Ева',
-        emoji: '💃',
+        emoji: '',
         health: '2 сердечка ❤️❤️',
         damage: '3.50 ⚔️',
         speed: '1.00 💨',
@@ -53,7 +53,7 @@ const CHARACTERS_DATA = [
     },
     {
         name: 'Самсон',
-        emoji: '💪',
+        emoji: '',
         health: '3 сердечка ❤️❤️❤️',
         damage: '3.50 ⚔️',
         speed: '1.00 💨',
@@ -63,7 +63,7 @@ const CHARACTERS_DATA = [
     },
     {
         name: 'Азазель',
-        emoji: '😈',
+        emoji: '',
         health: '3 сердечка ❤️❤️❤️',
         damage: '4.50 ⚔️',
         speed: '1.25 💨',
@@ -73,7 +73,7 @@ const CHARACTERS_DATA = [
     },
     {
         name: 'Лазарь',
-        emoji: '🔄',
+        emoji: '',
         health: '3 сердечка ❤️❤️❤️',
         damage: '3.50 ⚔️',
         speed: '1.00 💨',
@@ -83,7 +83,7 @@ const CHARACTERS_DATA = [
     },
     {
         name: 'Эдем',
-        emoji: '🎲',
+        emoji: '',
         health: 'Случайно 🎲',
         damage: 'Случайно 🎲',
         speed: 'Случайно 🎲',
@@ -93,7 +93,7 @@ const CHARACTERS_DATA = [
     },
     {
         name: 'Забытый',
-        emoji: '🦴',
+        emoji: '',
         health: '3 кости 🦴🦴🦴',
         damage: '3.50 ⚔️',
         speed: '1.00 💨',
@@ -103,7 +103,7 @@ const CHARACTERS_DATA = [
     },
     {
         name: 'Потерянный',
-        emoji: '👻',
+        emoji: '',
         health: '1 сердечко (разрушается от 1 хита) 💀',
         damage: '3.50 ⚔️',
         speed: '1.00 💨',
@@ -113,7 +113,7 @@ const CHARACTERS_DATA = [
     },
     {
         name: 'Кукла Кипер',
-        emoji: '🪙',
+        emoji: '',
         health: '2 монетных сердечка 🪙🪙',
         damage: '3.50 ⚔️',
         speed: '0.85 💨',
