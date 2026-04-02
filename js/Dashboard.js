@@ -5,16 +5,13 @@ import { RandomItemWidget } from './RandomItemWidget.js';
 export class Dashboard {
     constructor(containerId) {
         this.container = document.getElementById(containerId);
-        if (!this.container) {
-            throw new Error(`Container with id "${containerId}" not found`);
-        }
-        this.widgets = new Map();
-        this.widgetCounter = 0;
+        this.widgets = [];
+        this.nextId = 1;
     }
 
     addWidget(widgetType, config = {}) {
         let widget;
-        const widgetId = `widget_${++this.widgetCounter}_${Date.now()}`;
+        const widgetId = this.nextId++;
         
         switch(widgetType) {
             case 'transformations':
@@ -27,31 +24,35 @@ export class Dashboard {
                 widget = new RandomItemWidget({ ...config, id: widgetId });
                 break;
             default:
-                throw new Error(`Unknown widget type: ${widgetType}`);
+                console.error('Unknown widget type:', widgetType);
+                return null;
         }
 
         const widgetElement = widget.render();
         
-        // Устанавливаем обработчик закрытия
-        widget.setOnCloseHandler((id) => {
-            this.removeWidget(id);
-        });
+        // Находим кнопку закрытия и добавляем обработчик
+        const closeBtn = widgetElement.querySelector('.close-widget-btn');
+        if (closeBtn) {
+            closeBtn.addEventListener('click', () => {
+                this.removeWidget(widget);
+            });
+        }
         
-        this.widgets.set(widgetId, widget);
+        this.widgets.push(widget);
         this.container.appendChild(widgetElement);
         
-        return widgetId;
+        return widget;
     }
 
-    removeWidget(widgetId) {
-        const widget = this.widgets.get(widgetId);
-        if (widget) {
+    removeWidget(widget) {
+        const index = this.widgets.indexOf(widget);
+        if (index !== -1) {
             widget.destroy();
-            this.widgets.delete(widgetId);
+            this.widgets.splice(index, 1);
         }
     }
 
     getAllWidgets() {
-        return Array.from(this.widgets.values());
+        return [...this.widgets];
     }
 }
